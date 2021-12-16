@@ -31,9 +31,9 @@ class DatasetMixin:
 
     """ Devuelve la cantidad de elementos pertenecientes
         al conjunto de validación del dataset """
-    def validation_data_size(self):
+    def test_data_size(self):
 
-        return len(self.validation_data)
+        return len(self.test_data)
 
     """ Devuelve el tamaño del input vector (Incluendo el término de bias si
         este ha sido agregado
@@ -61,11 +61,41 @@ class DatasetMixin:
     """ Iterador para el conjunto de datos de validación
         del dataset
     """
-    def validation_data_iter(self):
+    def test_data_iter(self):
 
-        for index in self.validation_data:
+        for index in self.test_data:
 
             yield (self.features[index], self.values[index])
+
+    def training_data_arrays(self, zipped=False):
+
+        feature_list = []
+        value_list = []
+
+        for feature, value in self.training_data_iter():
+
+            feature_list.append(feature)
+            value_list.append(value)
+
+        if zipped:
+            return np.array(zip(feature_list, value_list))
+        else:
+            return np.array(feature_list), np.array(value_list)
+
+    def test_data_arrays(self, zipped=False):
+
+        feature_list = []
+        value_list = []
+
+        for feature, value in self.test_data_iter():
+
+            feature_list.append(feature)
+            value_list.append(value)
+
+        if zipped:
+            return np.array(zip(feature_list, value_list))
+        else:
+            return np.array(feature_list), np.array(value_list)
 
     """ Altera aleatoriamente el orden en que se iteran los elementos del
         conjunto de datos de entrenamiento
@@ -102,4 +132,26 @@ class LegoDataset(DatasetMixin):
         self.values = np.array(self.values)
         index_list = [i for i in range(len(self.features))]
         self.training_data = random.sample(index_list, int(0.80 * len(self.features)))
-        self.validation_data = [index for index in index_list if index not in self.training_data]
+        self.test_data = [index for index in index_list if index not in self.training_data]
+        self.visualization_data = random.sample(index_list, int(0.10 * len(self.features)))
+
+    def visualization_data_iter(self):
+
+        for index in self.visualization_data:
+
+            yield (self.features[index], self.values[index])
+
+    def visualization_data_arrays(self, zipped=False):
+
+        feature_list = []
+        value_list = []
+
+        for feature, value in self.visualization_data_iter():
+
+            feature_list.append(feature)
+            value_list.append(value)
+
+        if zipped:
+            return np.array(zip(feature_list, value_list))
+        else:
+            return np.array(feature_list), np.array(value_list)

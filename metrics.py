@@ -1,4 +1,3 @@
-import math
 import numpy as np
 
 def precision(true_positives, false_positives):
