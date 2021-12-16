@@ -1,0 +1,15 @@
+REPORTE SVM
+
+Kernel: poly
+Grado: 10
+C = 10
+
+Número de vectores de soporte: 96
+Accuracy (Training): 0.9865
+Precision (Train):
+	- Class 0: 0.9914101646385111
+	- Class 1: 0.9751243781094527
+Accuracy (Test): 0.989
+Precision (Test):
+	- Class 0: 0.9900568181818182
+	- Class 1: 0.9864864864864865
