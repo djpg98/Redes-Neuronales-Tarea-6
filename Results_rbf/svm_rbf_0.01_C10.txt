@@ -1,0 +1,15 @@
+REPORTE SVM
+
+Kernel: rbf
+Dispersión: 0.01
+C = 10
+
+Número de vectores de soporte: 3049
+Accuracy (Training): 1.0
+Precision (Train):
+	- Class 0: 1.0
+	- Class 1: 1.0
+Accuracy (Test): 0.981
+Precision (Test):
+	- Class 0: 0.9840579710144928
+	- Class 1: 0.9741935483870968
