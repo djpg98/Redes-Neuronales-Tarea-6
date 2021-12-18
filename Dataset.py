@@ -58,7 +58,7 @@ class DatasetMixin:
 
             yield (self.features[index], self.values[index])
 
-    """ Iterador para el conjunto de datos de validación
+    """ Iterador para el conjunto de datos de prueba
         del dataset
     """
     def test_data_iter(self):
@@ -67,6 +67,14 @@ class DatasetMixin:
 
             yield (self.features[index], self.values[index])
 
+    """ Devuelve arreglos que contienen los features y valores esperados del conjunto
+        de entrenamiento. El parámetro zipped determina si se hace zip para devolver 
+        un solo arreglo de tuplas donde cada tupla contiene los features en la primera
+        componente y el valor esperado en la segunda o si se devuelven dos arreglos
+        separados para features y valores esperados
+        Parámetros:
+            - zipped: Si se hace zip de los arreglos de features y valores o no    
+    """
     def training_data_arrays(self, zipped=False):
 
         feature_list = []
@@ -82,6 +90,14 @@ class DatasetMixin:
         else:
             return np.array(feature_list), np.array(value_list)
 
+    """ Devuelve arreglos que contienen los features y valores esperados del conjunto
+        de prueba. El parámetro zipped determina si se hace zip para devolver 
+        un solo arreglo de tuplas donde cada tupla contiene los features en la primera
+        componente y el valor esperado en la segunda o si se devuelven dos arreglos
+        separados para features y valores esperados
+        Parámetros:
+            - zipped: Si se hace zip de los arreglos de features y valores o no    
+    """
     def test_data_arrays(self, zipped=False):
 
         feature_list = []
@@ -135,12 +151,23 @@ class LegoDataset(DatasetMixin):
         self.test_data = [index for index in index_list if index not in self.training_data]
         self.visualization_data = random.sample(index_list, int(0.10 * len(self.features)))
 
+    """ Iterador para el conjunto de datos de visualización
+        del dataset
+    """
     def visualization_data_iter(self):
 
         for index in self.visualization_data:
 
             yield (self.features[index], self.values[index])
 
+    """ Devuelve arreglos que contienen los features y valores esperados del conjunto
+        de visualización. El parámetro zipped determina si se hace zip para devolver 
+        un solo arreglo de tuplas donde cada tupla contiene los features en la primera
+        componente y el valor esperado en la segunda o si se devuelven dos arreglos
+        separados para features y valores esperados
+        Parámetros:
+            - zipped: Si se hace zip de los arreglos de features y valores o no    
+    """
     def visualization_data_arrays(self, zipped=False):
 
         feature_list = []
