@@ -35,7 +35,7 @@ plot_decision_regions(X=visualization_features,
                       clf=classifier, 
                       legend=2)
 
-# Update plot object with X/Y axis labels and Figure Title
+# La idea de usar mlxtend vino de la respuesta de este post de stack overflow: https://stackoverflow.com/questions/43284811/plot-svm-with-matplotlib
 plt.xlabel('X', size=14)
 plt.ylabel('Y', size=14)
 plt.title('Región de decisión', size=16)
