@@ -36,6 +36,7 @@ plot_decision_regions(X=visualization_features,
                       legend=2)
 
 # La idea de usar mlxtend vino de la respuesta de este post de stack overflow: https://stackoverflow.com/questions/43284811/plot-svm-with-matplotlib
+# Que también fue el que me guió sobre como usar mlxtend para hacer la gráfica
 plt.xlabel('X', size=14)
 plt.ylabel('Y', size=14)
 plt.title('Región de decisión', size=16)
